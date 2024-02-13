@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'book.dart';
 import 'book_service.dart';
 
 void main() {
@@ -77,14 +78,14 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<BookService>(
-      builder: (context, bookservice, child) {
+      builder: (context, bookService, child) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
             toolbarHeight: 80,
             title: TextField(
               onSubmitted: (value) {
-                bookservice.search(value);
+                bookService.search(value);
               },
               cursorColor: Colors.grey,
               decoration: InputDecoration(
@@ -101,8 +102,20 @@ class SearchPage extends StatelessWidget {
               ),
             ),
           ),
-          body: Center(
-            child: Text("검색"),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: ListView.separated(
+              itemCount: bookService.bookList.length,
+              separatorBuilder: (context, index) {
+                return Divider();
+              },
+              itemBuilder: (context, index) {
+                Book book = bookService.bookList.elementAt(index);
+                return ListTile(
+                  title: Text(book.title),
+                );
+              },
+            ),
           ),
         );
       },
