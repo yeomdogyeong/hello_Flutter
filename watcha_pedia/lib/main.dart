@@ -110,9 +110,26 @@ class SearchPage extends StatelessWidget {
                 return Divider();
               },
               itemBuilder: (context, index) {
+                if (bookService.bookList.isEmpty) return SizedBox();
                 Book book = bookService.bookList.elementAt(index);
                 return ListTile(
-                  title: Text(book.title),
+                  onTap: () {},
+                  leading: Image.network(
+                    book.thumbnail,
+                    fit: BoxFit.fitHeight,
+                  ),
+                  title: Text(
+                    book.title,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  subtitle: Text(
+                    book.subtitle,
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  trailing: IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.star_border),
+                  ),
                 );
               },
             ),

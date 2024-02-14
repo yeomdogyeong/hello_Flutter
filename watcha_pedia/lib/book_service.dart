@@ -29,5 +29,6 @@ class BookService extends ChangeNotifier {
         bookList.add(book);
       }
     }
+    notifyListeners();
   }
 }
