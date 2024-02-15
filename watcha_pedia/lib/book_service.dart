@@ -35,6 +35,8 @@ class BookService extends ChangeNotifier {
           //?? => 비어있으면 뒤의 값을 대신 넣어줌
           title: item['volumeInfo']['title'] ?? "",
           subtitle: item['volumeInfo']['subtitle'] ?? "",
+          authors: item['volumeInfo']['authors'] ?? [],
+          publishedDate: item['volumeInfo']['publishedDate'] ?? "",
           thumbnail: item['volumeInfo']['imageLinks']?['thumbnail'] ??
               //밑의 주소는 섬네일이 없을 경우의 이미지
               "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg",

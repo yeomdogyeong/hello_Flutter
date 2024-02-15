@@ -2,6 +2,8 @@ class Book {
   String id;
   String title;
   String subtitle;
+  List authors;
+  String publishedDate;
   String thumbnail;
   String previewLink;
   //생성자
@@ -11,6 +13,8 @@ class Book {
     required this.id,
     required this.title,
     required this.subtitle,
+    required this.authors,
+    required this.publishedDate,
     required this.thumbnail,
     required this.previewLink,
   });
