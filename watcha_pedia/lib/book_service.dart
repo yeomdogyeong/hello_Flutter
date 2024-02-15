@@ -5,6 +5,20 @@ import 'book.dart';
 
 class BookService extends ChangeNotifier {
   List<Book> bookList = []; // 책 목록
+  List<Book> likedBookList = []; //좋아요한 책 목록
+
+  //좋아요 토글함수 : 좋아요한 책 목록을 돌면서 선택한 bookid가 있을때 : 없애고
+  //없을때 : 해당 id를 가진 listtile를 추가
+
+  void toggleLikeBook({required Book book}) {
+    String bookId = book.id;
+    if (likedBookList.map((el) => el.id).contains(bookId)) {
+      likedBookList.removeWhere((element) => element.id == bookId);
+    } else {
+      likedBookList.add(book);
+    }
+    notifyListeners();
+  }
 
   void search(String q) async {
     bookList.clear();
