@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'book.dart';
+import 'main.dart';
 
 class BookService extends ChangeNotifier {
   List<Book> bookList = []; // 책 목록
@@ -18,6 +21,7 @@ class BookService extends ChangeNotifier {
       likedBookList.add(book);
     }
     notifyListeners();
+    saveLikedBookList();
   }
 
   void search(String q) async {
@@ -46,5 +50,19 @@ class BookService extends ChangeNotifier {
       }
     }
     notifyListeners();
+  }
+
+  saveLikedBookList() {
+    //toList() => iterable(map매서드)를 List로 변환
+    List likedBookJsonList = likedBookList
+        .map((el) => el.toJson())
+        .toList(); // [{"content": "1"}, {"content": "2"}]
+
+    //Json형식의 문자열을 Dart객체로 변환
+    String jsonString =
+        jsonEncode(likedBookJsonList); // '[{"content": "1"}, {"content": "2"}]'
+
+    //SharedPreferences 인스턴스인 prefs에 문자열 값 저장 setString으로 두 개의 매개변수 받음
+    prefs.setString('likedBookList', jsonString);
   }
 }

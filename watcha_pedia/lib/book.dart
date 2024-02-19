@@ -18,4 +18,29 @@ class Book {
     required this.thumbnail,
     required this.previewLink,
   });
+//Book객체의 속성을 JSON형식의 Map으로 변환
+  Map toJson() {
+    return {
+      "id": id,
+      "title": title,
+      "subtitle": subtitle,
+      "authors": authors,
+      "publishedDate": publishedDate,
+      "thumbnail": thumbnail,
+      "previewLink": previewLink,
+    };
+  }
+
+//JSON형식의 Map을 Book객체로 변환
+  factory Book.fromJson(json) {
+    return Book(
+      id: json['id'],
+      title: json['title'],
+      subtitle: json['subtitle'],
+      authors: json['authors'],
+      publishedDate: json['publishedDate'],
+      thumbnail: json['thumbnail'],
+      previewLink: json['previewLink'],
+    );
+  }
 }

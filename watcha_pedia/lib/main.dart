@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'book.dart';
 import 'book_service.dart';
 
-void main() {
+//SharedPreferences 인스턴스를 나중에 초기화 할것을 선언
+//late로 변수사용 : 나중에 초기화 될 것
+late SharedPreferences prefs;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //SharedPreferences 인스턴스를 prefs에 할당
+  //간단한 데이터를 로컬에 저장하는데 사용
+  prefs = await SharedPreferences.getInstance();
   runApp(
     MultiProvider(
       providers: [
