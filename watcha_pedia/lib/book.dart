@@ -18,7 +18,7 @@ class Book {
     required this.thumbnail,
     required this.previewLink,
   });
-//Book객체의 속성을 JSON형식의 Map으로 변환
+//Book객체의 속성을 JSON형식의 Map으로 변환하는 메소드
   Map toJson() {
     return {
       "id": id,

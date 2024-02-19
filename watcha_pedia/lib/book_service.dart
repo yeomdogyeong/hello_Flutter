@@ -7,6 +7,10 @@ import 'book.dart';
 import 'main.dart';
 
 class BookService extends ChangeNotifier {
+  BookService() {
+    loadLikedBookList();
+  }
+
   List<Book> bookList = []; // 책 목록
   List<Book> likedBookList = []; //좋아요한 책 목록
 
@@ -54,15 +58,28 @@ class BookService extends ChangeNotifier {
 
   saveLikedBookList() {
     //toList() => iterable(map매서드)를 List로 변환
-    List likedBookJsonList = likedBookList
-        .map((el) => el.toJson())
-        .toList(); // [{"content": "1"}, {"content": "2"}]
+    List likedBookJsonList = likedBookList.map((el) => el.toJson()).toList();
+    // [{"content": "1"}, {"content": "2"}]
 
-    //Json형식의 문자열을 Dart객체로 변환
-    String jsonString =
-        jsonEncode(likedBookJsonList); // '[{"content": "1"}, {"content": "2"}]'
+    //Dart객체를 Json형식의 문자열로 변환
+    String jsonString = jsonEncode(likedBookJsonList);
+    // '[{"content": "1"}, {"content": "2"}]'
 
     //SharedPreferences 인스턴스인 prefs에 문자열 값 저장 setString으로 두 개의 매개변수 받음
     prefs.setString('likedBookList', jsonString);
+  }
+
+  loadLikedBookList() {
+    String? jsonString = prefs.getString('likedBookList');
+    // '[{"content": "1"}, {"content": "2"}]'
+
+    if (jsonString == null) return; // null이면 로드 x
+
+    //Json형식을 Dart객체로 변환
+    List likedBookJsonList = jsonDecode(jsonString);
+    // [{"content": "1"}, {"content": "2"}]
+
+    likedBookList =
+        likedBookJsonList.map((json) => Book.fromJson(json)).toList();
   }
 }
