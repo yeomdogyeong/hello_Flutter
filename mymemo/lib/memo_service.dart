@@ -8,17 +8,19 @@ import 'main.dart';
 class Memo {
   Memo({
     required this.content,
+    this.isPinned = false,
   });
 
   String content;
+  bool isPinned;
   //Memo 객체를 Map자료형으로 바꿔줌
   Map toJson() {
-    return {'content': content};
+    return {'content': content, 'isPinned': isPinned};
   }
 
   //Map 자료형에서 Memo객체를 복원
   factory Memo.fromJson(json) {
-    return Memo(content: json['content']);
+    return Memo(content: json['content'], isPinned: json['isPinned'] ?? false);
   }
 }
 
@@ -44,6 +46,18 @@ class MemoService extends ChangeNotifier {
   updateMemo({required int index, required String content}) {
     Memo memo = memoList[index];
     memo.content = content;
+    notifyListeners();
+    saveMemoList();
+  }
+
+  updatePinMemo({required int index}) {
+    Memo memo = memoList[index];
+    memo.isPinned = !memo.isPinned;
+    //memoList가 isPinned 되어있는 요소가 상위에 오도록 표시
+    memoList = [
+      ...memoList.where((el) => el.isPinned),
+      ...memoList.where((el) => !el.isPinned)
+    ];
     notifyListeners();
     saveMemoList();
   }

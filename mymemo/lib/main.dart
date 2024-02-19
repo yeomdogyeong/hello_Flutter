@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage> {
         // memoService로 부터 memoList 가져오기
         List<Memo> memoList = memoService.memoList;
 
+        void togglePin() {}
         return Scaffold(
           appBar: AppBar(
             title: Text("mymemo"),
@@ -61,9 +62,13 @@ class _HomePageState extends State<HomePage> {
                     return ListTile(
                       leading: IconButton(
                         onPressed: () {
+                          //눌렀을때 제일 상단으로 고정시키기
                           print('$memo : pin 클릭 됨');
                         },
-                        icon: Icon(CupertinoIcons.pin),
+                        // icon: Icon(CupertinoIcons.pin),
+                        icon: memo.isPinned
+                            ? Icon(CupertinoIcons.pin_fill)
+                            : Icon(CupertinoIcons.pin),
                       ),
                       title: Text(
                         memo.content,
