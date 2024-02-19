@@ -76,6 +76,9 @@ class _HomePageState extends State<HomePage> {
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                       ),
+                      trailing: Text(memo.time == null
+                          ? ''
+                          : memo.time.toString().substring(0, 19)),
                       onTap: () {
                         Navigator.push(
                           context,

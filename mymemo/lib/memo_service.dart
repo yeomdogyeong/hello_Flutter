@@ -6,21 +6,28 @@ import 'main.dart';
 
 // Memo 데이터의 형식을 정해줍니다. 추후 isPinned, updatedAt 등의 정보도 저장할 수 있습니다.
 class Memo {
-  Memo({
-    required this.content,
-    this.isPinned = false,
-  });
-
   String content;
   bool isPinned;
+  //null값 가능
+  DateTime? time;
+
+  Memo({required this.content, this.isPinned = false, this.time});
+
   //Memo 객체를 Map자료형으로 바꿔줌
   Map toJson() {
-    return {'content': content, 'isPinned': isPinned};
+    return {
+      'content': content,
+      'isPinned': isPinned,
+      'time': time,
+    };
   }
 
   //Map 자료형에서 Memo객체를 복원
   factory Memo.fromJson(json) {
-    return Memo(content: json['content'], isPinned: json['isPinned'] ?? false);
+    return Memo(
+        content: json['content'],
+        isPinned: json['isPinned'] ?? false,
+        time: json['time'] ?? '');
   }
 }
 
@@ -38,6 +45,7 @@ class MemoService extends ChangeNotifier {
   createMemo({required String content}) {
     Memo memo = Memo(content: content);
     memoList.add(memo);
+    memo.time = DateTime.now();
     notifyListeners();
     //메모를 삭제,변경,생성할 때마다 메모를 저장
     saveMemoList(); // Consumer<MemoService>의 builder 부분을 호출해서 화면 새로고침
@@ -46,6 +54,7 @@ class MemoService extends ChangeNotifier {
   updateMemo({required int index, required String content}) {
     Memo memo = memoList[index];
     memo.content = content;
+    memo.time = DateTime.now();
     notifyListeners();
     saveMemoList();
   }
