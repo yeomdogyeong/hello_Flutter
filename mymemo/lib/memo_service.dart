@@ -18,7 +18,7 @@ class Memo {
     return {
       'content': content,
       'isPinned': isPinned,
-      'time': time,
+      'time': time?.toIso8601String(),
     };
   }
 
@@ -27,7 +27,7 @@ class Memo {
     return Memo(
         content: json['content'],
         isPinned: json['isPinned'] ?? false,
-        time: json['time'] ?? '');
+        time: json['time'] == null ? null : DateTime.parse(json['time']));
   }
 }
 
@@ -37,10 +37,7 @@ class MemoService extends ChangeNotifier {
     loadMemoList();
   }
 
-  List<Memo> memoList = [
-    Memo(content: '장보기 목록: 사과, 양파'), // 더미(dummy) 데이터
-    Memo(content: '새 메모'), // 더미(dummy) 데이터
-  ];
+  List<Memo> memoList = [];
 
   createMemo({required String content}) {
     Memo memo = Memo(content: content);
@@ -63,10 +60,15 @@ class MemoService extends ChangeNotifier {
     Memo memo = memoList[index];
     memo.isPinned = !memo.isPinned;
     //memoList가 isPinned 되어있는 요소가 상위에 오도록 표시
-    memoList = [
-      ...memoList.where((el) => el.isPinned),
-      ...memoList.where((el) => !el.isPinned)
-    ];
+
+    List<Memo> pinned = memoList.where((el) => el.isPinned).toList();
+    List<Memo> unPinned = memoList.where((el) => !el.isPinned).toList();
+
+    pinned.sort((a, b) => b.time!.compareTo(a.time!));
+    unPinned.sort((a, b) => b.time!.compareTo(a.time!));
+
+    memoList = [...pinned, ...unPinned];
+
     notifyListeners();
     saveMemoList();
   }
