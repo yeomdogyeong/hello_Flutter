@@ -37,7 +37,10 @@ class MemoService extends ChangeNotifier {
     loadMemoList();
   }
 
-  List<Memo> memoList = [];
+  List<Memo> memoList = [
+    Memo(content: '장보기 목록: 사과, 양파'), // 더미(dummy) 데이터
+    Memo(content: '새 메모'), // 더미(dummy) 데이터
+  ];
 
   createMemo({required String content}) {
     Memo memo = Memo(content: content);
@@ -52,6 +55,7 @@ class MemoService extends ChangeNotifier {
     Memo memo = memoList[index];
     memo.content = content;
     memo.time = DateTime.now();
+
     notifyListeners();
     saveMemoList();
   }
