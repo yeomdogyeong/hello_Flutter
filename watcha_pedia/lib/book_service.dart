@@ -7,6 +7,7 @@ import 'book.dart';
 import 'main.dart';
 
 class BookService extends ChangeNotifier {
+  ///Dart : 클래스의 인스턴스가 생성될 때 생성자는 자동으로 호출된다.
   BookService() {
     loadLikedBookList();
   }
