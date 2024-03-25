@@ -19,51 +19,52 @@ class customContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
+      scrollDirection: Axis.horizontal,
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Container(
-            width: double.infinity,
+            width: 100,
             height: 100,
             color: Colors.grey,
-            margin: EdgeInsets.symmetric(vertical: 8),
+            margin: EdgeInsets.symmetric(horizontal: 8),
           ),
           Container(
-            width: double.infinity,
+            width: 100,
             height: 100,
             color: Colors.grey,
-            margin: EdgeInsets.symmetric(vertical: 8),
+            margin: EdgeInsets.symmetric(horizontal: 8),
           ),
           Container(
-            width: double.infinity,
+            width: 100,
             height: 100,
             color: Colors.grey,
-            margin: EdgeInsets.symmetric(vertical: 8),
+            margin: EdgeInsets.symmetric(horizontal: 8),
           ),
           Container(
-            width: double.infinity,
+            width: 100,
             height: 100,
             color: Colors.grey,
-            margin: EdgeInsets.symmetric(vertical: 8),
+            margin: EdgeInsets.symmetric(horizontal: 8),
           ),
           Container(
-            width: double.infinity,
+            width: 100,
             height: 100,
             color: Colors.grey,
-            margin: EdgeInsets.symmetric(vertical: 8),
+            margin: EdgeInsets.symmetric(horizontal: 8),
           ),
           Container(
-            width: double.infinity,
+            width: 100,
             height: 100,
             color: Colors.grey,
-            margin: EdgeInsets.symmetric(vertical: 8),
+            margin: EdgeInsets.symmetric(horizontal: 8),
           ),
           Container(
-            width: double.infinity,
+            width: 100,
             height: 100,
             color: Colors.grey,
-            margin: EdgeInsets.symmetric(vertical: 8),
+            margin: EdgeInsets.symmetric(horizontal: 8),
           ),
         ],
       ),
