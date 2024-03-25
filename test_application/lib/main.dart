@@ -20,24 +20,16 @@ class customContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Flexible(
-          flex: 1,
-          child: Container(
-            color: Colors.red,
-          ),
+        Container(
+          width: double.infinity,
+          height: 200,
+          color: Colors.red,
         ),
         Flexible(
-          flex: 2,
-          child: Container(
-            color: Colors.green,
-          ),
-        ),
-        Flexible(
-          flex: 3,
           child: Container(
             color: Colors.blue,
           ),
-        ),
+        )
       ],
     );
   }
