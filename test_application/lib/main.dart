@@ -18,56 +18,27 @@ class customContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.grey,
-            margin: EdgeInsets.symmetric(horizontal: 8),
+    return Column(
+      children: [
+        Flexible(
+          flex: 1,
+          child: Container(
+            color: Colors.red,
           ),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.grey,
-            margin: EdgeInsets.symmetric(horizontal: 8),
+        ),
+        Flexible(
+          flex: 2,
+          child: Container(
+            color: Colors.green,
           ),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.grey,
-            margin: EdgeInsets.symmetric(horizontal: 8),
+        ),
+        Flexible(
+          flex: 3,
+          child: Container(
+            color: Colors.blue,
           ),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.grey,
-            margin: EdgeInsets.symmetric(horizontal: 8),
-          ),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.grey,
-            margin: EdgeInsets.symmetric(horizontal: 8),
-          ),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.grey,
-            margin: EdgeInsets.symmetric(horizontal: 8),
-          ),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.grey,
-            margin: EdgeInsets.symmetric(horizontal: 8),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
