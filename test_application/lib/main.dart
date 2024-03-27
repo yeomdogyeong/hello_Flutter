@@ -18,18 +18,26 @@ class customContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
         Container(
-          width: double.infinity,
-          height: 200,
+          width: 400,
+          height: 400,
+          color: Colors.blue,
+        ),
+        Container(
+          width: 300,
+          height: 300,
           color: Colors.red,
         ),
-        Flexible(
-          child: Container(
-            color: Colors.blue,
-          ),
-        )
+        Positioned(
+            bottom: 5,
+            right: 30,
+            child: Container(
+              width: 200,
+              height: 200,
+              color: Colors.orange,
+            )),
       ],
     );
   }
