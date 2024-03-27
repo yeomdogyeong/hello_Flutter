@@ -30,9 +30,8 @@ class customContainer extends StatelessWidget {
           height: 300,
           color: Colors.red,
         ),
-        Positioned(
-            bottom: 5,
-            right: 30,
+        Align(
+            alignment: Alignment.topRight,
             child: Container(
               width: 200,
               height: 200,
