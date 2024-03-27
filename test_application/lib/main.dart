@@ -3,41 +3,40 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('im abbbar'),
-        ),
-        body: customContainer(),
-      ),
+      home: HomeWidget(),
     ),
   );
 }
 
-class customContainer extends StatelessWidget {
-  const customContainer({super.key});
+class HomeWidget extends StatelessWidget {
+  const HomeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: 400,
-          height: 400,
-          color: Colors.blue,
-        ),
-        Container(
-          width: 300,
-          height: 300,
+    return SafeArea(
+        child: Scaffold(
+      body: ConstraintsWidget(),
+    ));
+  }
+}
+
+class ConstraintsWidget extends StatelessWidget {
+  const ConstraintsWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 500,
+      width: 500,
+      color: Colors.blue,
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: Container(
           color: Colors.red,
+          height: 200,
+          width: 200,
         ),
-        Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              width: 200,
-              height: 200,
-              color: Colors.orange,
-            )),
-      ],
+      ),
     );
   }
 }
