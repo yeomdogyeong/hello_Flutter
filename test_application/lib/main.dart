@@ -28,6 +28,7 @@ class TestWidget extends StatelessWidget {
     return Column(
       children: [
         TextCheckBox(),
+        TestRadioButton(),
       ],
     );
   }
@@ -52,17 +53,36 @@ class _TextCheckBoxState extends State<TextCheckBox> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Checkbox(
-            value: check[0],
-            onChanged: (value) => handleChange(0, value ?? false)),
-        Checkbox(
-            value: check[1],
-            onChanged: (value) => handleChange(1, value ?? false)),
-        Checkbox(
-            value: check[2],
-            onChanged: (value) => handleChange(2, value ?? false)),
+        Container(
+          width: double.infinity,
+          alignment: Alignment.center,
+          margin: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(10.0),
+          decoration: BoxDecoration(border: Border.all(color: Colors.green)),
+          child: Text(
+            'CheckBox Button',
+            style: TextStyle(
+              color: Colors.green,
+              fontSize: 20,
+            ),
+          ),
+        ),
+        Row(
+          children: [
+            Checkbox(
+                value: check[0],
+                onChanged: (value) => handleChange(0, value ?? false)),
+            Checkbox(
+                value: check[1],
+                onChanged: (value) => handleChange(1, value ?? false)),
+            Checkbox(
+                value: check[2],
+                onChanged: (value) => handleChange(2, value ?? false)),
+          ],
+        ),
       ],
     );
   }
@@ -73,5 +93,71 @@ class _TextCheckBoxState extends State<TextCheckBox> {
       //ui가 변경되어야할 때 감싸줌
       check[idx] = !check[idx];
     });
+  }
+}
+
+enum TestRadioValue {
+  test1,
+  test2,
+  test3,
+}
+
+class TestRadioButton extends StatefulWidget {
+  const TestRadioButton({super.key});
+
+  @override
+  State<TestRadioButton> createState() => _TestRadioButtonState();
+}
+
+class _TestRadioButtonState extends State<TestRadioButton> {
+  TestRadioValue? selectValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: double.infinity,
+          alignment: Alignment.center,
+          margin: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(10.0),
+          decoration: BoxDecoration(border: Border.all(color: Colors.orange)),
+          child: Text(
+            'Radio Button',
+            style: TextStyle(color: Colors.orange, fontSize: 20),
+          ),
+        ),
+        RadioListTile<TestRadioValue>(
+          title: const Text('Test 1'),
+          value: TestRadioValue.test1,
+          groupValue: selectValue,
+          onChanged: (TestRadioValue? value) {
+            setState(() {
+              selectValue = value;
+            });
+          },
+        ),
+        RadioListTile<TestRadioValue>(
+          title: const Text('Test 2'),
+          value: TestRadioValue.test2,
+          groupValue: selectValue,
+          onChanged: (TestRadioValue? value) {
+            setState(() {
+              selectValue = value;
+            });
+          },
+        ),
+        RadioListTile<TestRadioValue>(
+          title: const Text('Test 3'),
+          value: TestRadioValue.test3,
+          groupValue: selectValue,
+          onChanged: (TestRadioValue? value) {
+            setState(() {
+              selectValue = value;
+            });
+          },
+        ),
+      ],
+    );
   }
 }
