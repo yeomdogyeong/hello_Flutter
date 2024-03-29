@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,23 +28,24 @@ class TestWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextCheckBox(),
+        TestCheckBox(),
         TestRadioButton(),
         TestSlider(),
         TestSwitch(),
+        TestPopupMenu(),
       ],
     );
   }
 }
 
-class TextCheckBox extends StatefulWidget {
-  const TextCheckBox({super.key});
+class TestCheckBox extends StatefulWidget {
+  const TestCheckBox({super.key});
 
   @override
-  State<TextCheckBox> createState() => _TextCheckBoxState();
+  State<TestCheckBox> createState() => _TestCheckBoxState();
 }
 
-class _TextCheckBoxState extends State<TextCheckBox> {
+class _TestCheckBoxState extends State<TestCheckBox> {
   late List<bool> check;
 
   @override
@@ -98,7 +100,7 @@ class _TextCheckBoxState extends State<TextCheckBox> {
   }
 }
 
-enum TestRadioValue {
+enum TestValue {
   test1,
   test2,
   test3,
@@ -112,7 +114,7 @@ class TestRadioButton extends StatefulWidget {
 }
 
 class _TestRadioButtonState extends State<TestRadioButton> {
-  TestRadioValue? selectValue;
+  TestValue? selectValue;
 
   @override
   Widget build(BuildContext context) {
@@ -129,31 +131,31 @@ class _TestRadioButtonState extends State<TestRadioButton> {
             style: TextStyle(color: Colors.orange, fontSize: 20),
           ),
         ),
-        RadioListTile<TestRadioValue>(
+        RadioListTile<TestValue>(
           title: const Text('Test 1'),
-          value: TestRadioValue.test1,
+          value: TestValue.test1,
           groupValue: selectValue,
-          onChanged: (TestRadioValue? value) {
+          onChanged: (TestValue? value) {
             setState(() {
               selectValue = value;
             });
           },
         ),
-        RadioListTile<TestRadioValue>(
+        RadioListTile<TestValue>(
           title: const Text('Test 2'),
-          value: TestRadioValue.test2,
+          value: TestValue.test2,
           groupValue: selectValue,
-          onChanged: (TestRadioValue? value) {
+          onChanged: (TestValue? value) {
             setState(() {
               selectValue = value;
             });
           },
         ),
-        RadioListTile<TestRadioValue>(
+        RadioListTile<TestValue>(
           title: const Text('Test 3'),
-          value: TestRadioValue.test3,
+          value: TestValue.test3,
           groupValue: selectValue,
-          onChanged: (TestRadioValue? value) {
+          onChanged: (TestValue? value) {
             setState(() {
               selectValue = value;
             });
@@ -202,8 +204,61 @@ class TestSwitch extends StatefulWidget {
 }
 
 class _TestSwitchState extends State<TestSwitch> {
+  bool value = false;
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: [
+        Switch(
+          value: value,
+          onChanged: (newValue) => setState(
+            () {
+              value = newValue;
+            },
+          ),
+        ),
+        CupertinoSwitch(
+          value: value,
+          onChanged: (newValue) => setState(
+            () {
+              value = newValue;
+            },
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class TestPopupMenu extends StatefulWidget {
+  const TestPopupMenu({super.key});
+
+  @override
+  State<TestPopupMenu> createState() => _TestPopupMenuState();
+}
+
+class _TestPopupMenuState extends State<TestPopupMenu> {
+  TestValue searchValue = TestValue.test1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(searchValue.name),
+        PopupMenuButton(
+            itemBuilder: (context) {
+              return TestValue.values
+                  .map((element) =>
+                      //popmenuItem에 value를 정해줘야 onselected일때 바뀐항목이 제대로 표시됨
+                      //Js의 input처럼 value를 꼭 첨부해주자!
+                      PopupMenuItem(value: element, child: Text(element.name)))
+                  .toList();
+            },
+            onSelected: (newValue) => setState(
+                  () => searchValue = newValue,
+                )),
+      ],
+    );
   }
 }
