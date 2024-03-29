@@ -29,6 +29,8 @@ class TestWidget extends StatelessWidget {
       children: [
         TextCheckBox(),
         TestRadioButton(),
+        TestSlider(),
+        TestSwitch(),
       ],
     );
   }
@@ -159,5 +161,49 @@ class _TestRadioButtonState extends State<TestRadioButton> {
         ),
       ],
     );
+  }
+}
+
+class TestSlider extends StatefulWidget {
+  const TestSlider({super.key});
+
+  @override
+  State<TestSlider> createState() => _TestSliderState();
+}
+
+class _TestSliderState extends State<TestSlider> {
+  double value = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('$value'),
+        Slider(
+          value: value as double,
+          onChanged: (newValue) {
+            setState(() => value = newValue);
+          },
+          min: 0,
+          max: 10,
+          divisions: 10,
+          activeColor: Colors.pink,
+        ),
+      ],
+    );
+  }
+}
+
+class TestSwitch extends StatefulWidget {
+  const TestSwitch({super.key});
+
+  @override
+  State<TestSwitch> createState() => _TestSwitchState();
+}
+
+class _TestSwitchState extends State<TestSwitch> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
