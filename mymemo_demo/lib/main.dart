@@ -126,6 +126,12 @@ class _HomePageState extends State<HomePage> {
               );
             },
           ),
+          bottomNavigationBar: Container(
+            alignment: Alignment.center,
+            width: myBanner.size.width.toDouble(),
+            height: myBanner.size.height.toDouble(),
+            child: AdWidget(ad: myBanner),
+          ),
         );
       },
     );
