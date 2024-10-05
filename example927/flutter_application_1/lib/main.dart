@@ -45,10 +45,17 @@ class TestStateLess extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       //컨테이너는 기본적으로 child를 가질 수 있음
-      child: Center(child: Text('Hello Container')),
       color: Colors.purple.shade200,
       width: double.infinity,
       height: double.infinity,
+      padding: EdgeInsets.fromLTRB(10, 12, 10, 12),
+      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      child: Center(
+        child: Container(
+          color: Colors.white,
+          child: Text('Hello Container'),
+        ),
+      ),
     );
   }
 }
