@@ -19,7 +19,7 @@ void main() {
               ),
             ],
           ),
-          body: TestStateLess()
+          body: AlignContainer()
           // SafeArea(
           //   child: Text(
           //     'ffffigmasssaaabbb!',
@@ -43,18 +43,47 @@ class TestStateLess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //컨테이너는 기본적으로 child를 가질 수 있음
-      color: Colors.purple.shade200,
-      width: double.infinity,
-      height: double.infinity,
-      padding: EdgeInsets.fromLTRB(10, 12, 10, 12),
-      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: Center(
-        child: Container(
-          color: Colors.white,
-          child: Text('Hello Container'),
+    return Center(
+      child: Container(
+        //컨테이너는 기본적으로 child를 가질 수 있음
+        width: 200,
+        height: 200,
+        padding: EdgeInsets.fromLTRB(10, 12, 10, 12),
+        decoration: BoxDecoration(
+          color: Colors.purple.shade200,
         ),
+        margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        child: Center(
+          child: Container(
+            color: Colors.white,
+            child: Text('Hello Container'),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AlignContainer extends StatelessWidget {
+  const AlignContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      color: Colors.grey,
+      child: Column(
+        children: [
+          Container(
+            height: 100,
+            width: 100,
+          ),
+          Container(
+            height: 100,
+            width: 100,
+          ),
+        ],
       ),
     );
   }
