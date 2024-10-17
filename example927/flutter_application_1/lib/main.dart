@@ -8,7 +8,7 @@ void main() {
       //기본 앱을 쉽게 만들 수 있는 scaffold
       home: Scaffold(
           appBar: AppBar(
-            title: Text('This is App bar!'),
+            title: Text('Hi DG!'),
             backgroundColor: Colors.lightBlue,
             actions: [
               IconButton(
@@ -19,7 +19,7 @@ void main() {
               ),
             ],
           ),
-          body: AlignContainer()
+          body: Ratio()
           // SafeArea(
           //   child: Text(
           //     'ffffigmasssaaabbb!',
@@ -38,28 +38,51 @@ void main() {
   );
 }
 
+//container를 배치
 class TestStateLess extends StatelessWidget {
   const TestStateLess({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        //컨테이너는 기본적으로 child를 가질 수 있음
-        width: 200,
-        height: 200,
-        padding: EdgeInsets.fromLTRB(10, 12, 10, 12),
-        decoration: BoxDecoration(
-          color: Colors.purple.shade200,
-        ),
-        margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        child: Center(
-          child: Container(
-            color: Colors.white,
-            child: Text('Hello Container'),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          //컨테이너는 기본적으로 child를 가질 수 있음
+          width: 100,
+          height: 100,
+          padding: EdgeInsets.fromLTRB(10, 12, 10, 12),
+          decoration: BoxDecoration(
+            color: Colors.purple.shade200,
+          ),
+          margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          child: Center(
+            child: Container(
+              color: Colors.white,
+              child: Text('bb Container'),
+            ),
           ),
         ),
-      ),
+        Center(
+          child: Container(
+            //컨테이너는 기본적으로 child를 가질 수 있음
+            width: 100,
+            height: 100,
+            padding: EdgeInsets.fromLTRB(10, 12, 10, 12),
+            decoration: BoxDecoration(
+              color: Colors.purple.shade200,
+            ),
+            margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            child: Center(
+              child: Container(
+                color: Colors.white,
+                child: Text('bb Container'),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -72,12 +95,14 @@ class AlignContainer extends StatelessWidget {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      color: Colors.grey,
+      color: const Color.fromARGB(255, 155, 101, 101),
       child: Column(
         children: [
           Container(
             height: 100,
             width: 100,
+            child: Text('hi'),
+            color: Colors.red,
           ),
           Container(
             height: 100,
@@ -85,6 +110,32 @@ class AlignContainer extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+//비율로 배치하기
+class Ratio extends StatelessWidget {
+  const Ratio({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          color: Colors.red,
+          width: 300,
+          height: 300,
+        ),
+        Container(
+          color: Colors.blue,
+          width: 300,
+          height: 300,
+          child: Text('hi'),
+        )
+      ],
     );
   }
 }
