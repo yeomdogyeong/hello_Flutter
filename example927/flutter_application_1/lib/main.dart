@@ -128,14 +128,21 @@ class Ratio extends StatelessWidget {
           height: 200,
           color: Colors.red,
         ),
-        //위쪽에 container를 제외한 나머지 영역을 차지하게 하려면
-        //아래와 같이 Flexible에 width, height을 주지 않으면 된다.
+        //해당 flexible과 expanded는 서로 같아 보이지만,
+        //flexible은 row, column일때 자식의 영역에 따라 달라질 수 있음
+        //width, height을 줬을때 차이를 확인할수있음
         Flexible(
           child: Container(
             color: Colors.blue,
+            height: 100,
           ),
         ),
-
+        Expanded(
+          child: Container(
+            color: Colors.yellow,
+            height: 100,
+          ),
+        ),
         // Flexible(
         //   flex: 1,
         //   child: Container(
