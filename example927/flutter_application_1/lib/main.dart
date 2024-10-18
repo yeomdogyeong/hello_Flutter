@@ -137,6 +137,10 @@ class Ratio extends StatelessWidget {
             height: 100,
           ),
         ),
+        //expanded는 높낮이에 상관없이 나머지 영역을 차지한다.
+        //expanded는 높낮이가 기본적으로 정해져있지 않다.
+        //그래서 SingleChildScrollView 안에서의 사용은 flutter가 읽을 수 없게 된다.
+        //상위 오류의 해결법은 expanded 대신 flexible을 사용하는것
         Expanded(
           child: Container(
             color: Colors.yellow,
