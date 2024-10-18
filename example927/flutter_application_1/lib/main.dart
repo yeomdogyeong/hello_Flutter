@@ -123,18 +123,31 @@ class Ratio extends StatelessWidget {
     return Column(
       //위젯으로 감싸고 flexible 적용
       children: [
-        Flexible(
-          flex: 1,
-          child: Container(
-            color: Colors.red,
-          ),
+        Container(
+          width: double.infinity,
+          height: 200,
+          color: Colors.red,
         ),
+        //위쪽에 container를 제외한 나머지 영역을 차지하게 하려면
+        //아래와 같이 Flexible에 width, height을 주지 않으면 된다.
         Flexible(
-          flex: 2,
           child: Container(
             color: Colors.blue,
           ),
-        )
+        ),
+
+        // Flexible(
+        //   flex: 1,
+        //   child: Container(
+        //     color: Colors.red,
+        //   ),
+        // ),
+        // Flexible(
+        //   flex: 2,
+        //   child: Container(
+        //     color: Colors.blue,
+        //   ),
+        // )
       ],
     );
   }
