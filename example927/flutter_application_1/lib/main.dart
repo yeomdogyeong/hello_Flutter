@@ -121,19 +121,19 @@ class Ratio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      //위젯으로 감싸고 flexible 적용
       children: [
-        Container(
-          color: Colors.red,
-          width: 300,
-          height: 300,
+        Flexible(
+          flex: 1,
+          child: Container(
+            color: Colors.red,
+          ),
         ),
-        Container(
-          color: Colors.blue,
-          width: 300,
-          height: 300,
-          child: Text('hi'),
+        Flexible(
+          flex: 2,
+          child: Container(
+            color: Colors.blue,
+          ),
         )
       ],
     );
