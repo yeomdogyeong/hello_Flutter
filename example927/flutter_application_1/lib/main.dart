@@ -19,7 +19,7 @@ void main() {
               ),
             ],
           ),
-          body: Ratio()
+          body: Stack()
           // SafeArea(
           //   child: Text(
           //     'ffffigmasssaaabbb!',
@@ -128,19 +128,12 @@ class Ratio extends StatelessWidget {
           height: 200,
           color: Colors.red,
         ),
-        //해당 flexible과 expanded는 서로 같아 보이지만,
-        //flexible은 row, column일때 자식의 영역에 따라 달라질 수 있음
-        //width, height을 줬을때 차이를 확인할수있음
         Flexible(
           child: Container(
             color: Colors.blue,
             height: 100,
           ),
         ),
-        //expanded는 높낮이에 상관없이 나머지 영역을 차지한다.
-        //expanded는 높낮이가 기본적으로 정해져있지 않다.
-        //그래서 SingleChildScrollView 안에서의 사용은 flutter가 읽을 수 없게 된다.
-        //상위 오류의 해결법은 expanded 대신 flexible을 사용하는것
         Expanded(
           child: Container(
             color: Colors.yellow,
@@ -161,5 +154,14 @@ class Ratio extends StatelessWidget {
         // )
       ],
     );
+  }
+}
+
+class Stack extends StatelessWidget {
+  const Stack({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(color: Colors.red);
   }
 }
