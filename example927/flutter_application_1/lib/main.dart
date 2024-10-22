@@ -19,7 +19,7 @@ void main() {
               ),
             ],
           ),
-          body: Stack()
+          body: StackScreen()
           // SafeArea(
           //   child: Text(
           //     'ffffigmasssaaabbb!',
@@ -157,11 +157,30 @@ class Ratio extends StatelessWidget {
   }
 }
 
-class Stack extends StatelessWidget {
-  const Stack({super.key});
+class StackScreen extends StatelessWidget {
+  const StackScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.red);
+    return Stack(
+      children: [
+        Container(
+          color: Colors.red,
+          width: 500,
+          height: 500,
+        ),
+        Container(
+          color: Colors.purple,
+          width: 400,
+          height: 400,
+        ),
+        Container(
+          color: Colors.blue,
+          child: Text('HI'),
+          width: 300,
+          height: 300,
+        ),
+      ],
+    );
   }
 }
