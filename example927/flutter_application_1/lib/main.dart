@@ -174,11 +174,15 @@ class StackScreen extends StatelessWidget {
           width: 400,
           height: 400,
         ),
-        Container(
-          color: Colors.blue,
-          child: Text('HI'),
-          width: 300,
-          height: 300,
+        Positioned(
+          bottom: 50,
+          right: -70,
+          child: Container(
+            color: Colors.blue,
+            child: Text('HI'),
+            width: 300,
+            height: 300,
+          ),
         ),
       ],
     );
