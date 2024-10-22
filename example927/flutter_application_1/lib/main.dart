@@ -164,26 +164,28 @@ class StackScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          color: Colors.red,
-          width: 500,
-          height: 500,
-        ),
-        Container(
-          color: Colors.purple,
-          width: 400,
-          height: 400,
-        ),
-        Positioned(
-          bottom: 50,
-          right: -70,
+        Align(
           child: Container(
-            color: Colors.blue,
-            child: Text('HI'),
             width: 300,
             height: 300,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(150), color: Colors.red),
           ),
         ),
+        Align(
+          child: Container(
+            width: 280,
+            height: 280,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(140), color: Colors.white),
+          ),
+        ),
+        Align(
+          child: Text(
+            'Hi',
+            style: TextStyle(color: Colors.red),
+          ),
+        )
       ],
     );
   }
