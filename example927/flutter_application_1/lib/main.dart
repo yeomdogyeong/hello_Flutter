@@ -190,3 +190,38 @@ class StackScreen extends StatelessWidget {
     );
   }
 }
+
+
+//edgeInsets.all은 패딩을 모든 변에 제공한다
+//constrainedbox는 자식 위젯의 크기 제약을 가한다
+//unconstrainedbox는 부모 위젯에서 적용한 제약 조건을 제거하거나 완화한다
+
+// ConstrainedBox 예시
+ 
+// ConstrainedBox(
+//   constraints: BoxConstraints(
+//     minWidth: 100, // Minimum width is 100
+//     minHeight: 50, // Minimum height is 50
+//     maxWidth: 150, // Maximum width is 150
+//     maxHeight: 100, // Maximum height is 100
+//   ),
+//   child: Container(
+//     color: Colors.blue,
+//     width: 200, // This width will be ignored because of the constraints
+//     height: 200, // This height will be ignored because of the constraints
+//   ),
+// )
+
+//위에서는 제약을 걸었기 때문에 150x100으로 제한
+
+//UnconstrainedBox
+
+// UnconstrainedBox(
+//   child: Container(
+//     color: Colors.green,
+//     width: 300, // The child can exceed the parent's size constraints
+//     height: 300,
+//   ),
+// )
+
+//위는 부모의 크기 제약을 제거하여 300x300
