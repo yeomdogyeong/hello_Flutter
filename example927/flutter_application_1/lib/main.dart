@@ -210,6 +210,24 @@ class TestButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('up counter'));
+    return Container(
+      margin: EdgeInsets.all(8),
+      width: double.infinity,
+      //입력을 받는 GestureDetector
+      child: GestureDetector(
+        onTap: () => print('some Text'),
+        child: Center(
+          child: Container(
+            decoration: BoxDecoration(
+                //테두리 두께
+                border: Border.all(width: 1.0),
+                //모서리의 둥글기 정도
+                borderRadius: BorderRadius.circular(8.0)),
+            child: Text('up counter'),
+            padding: EdgeInsets.all(8),
+          ),
+        ),
+      ),
+    );
   }
 }
