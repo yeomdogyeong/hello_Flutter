@@ -7,33 +7,20 @@ void main() {
     MaterialApp(
       //기본 앱을 쉽게 만들 수 있는 scaffold
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('Hi DG!'),
-            backgroundColor: Colors.lightBlue,
-            actions: [
-              IconButton(
-                icon: Icon(
-                  Icons.home,
-                ),
-                onPressed: () => print('Hello Mango'),
+        appBar: AppBar(
+          title: Text('Hi DG!'),
+          backgroundColor: Colors.lightBlue,
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.home,
               ),
-            ],
-          ),
-          body: StackScreen()
-          // SafeArea(
-          //   child: Text(
-          //     'ffffigmasssaaabbb!',
-          //     style: TextStyle(
-          //       color: Colors.black,
-          //       fontSize: 32,
-          //     ),
-          //   ),
-          // ),
-          // floatingActionButton: FloatingActionButton(
-          //   onPressed: () => print('hey!'),
-          //   child: Icon(Icons.bug_report),
-          // ),
-          ),
+              onPressed: () => print('Hello Mango'),
+            ),
+          ],
+        ),
+        body: RadioButtons(),
+      ),
     ),
   );
 }
@@ -191,37 +178,38 @@ class StackScreen extends StatelessWidget {
   }
 }
 
+class RadioButtons extends StatefulWidget {
+  const RadioButtons({super.key});
 
-//edgeInsets.all은 패딩을 모든 변에 제공한다
-//constrainedbox는 자식 위젯의 크기 제약을 가한다
-//unconstrainedbox는 부모 위젯에서 적용한 제약 조건을 제거하거나 완화한다
+  @override
+  State<RadioButtons> createState() => _RadioButtonsState();
+}
 
-// ConstrainedBox 예시
- 
-// ConstrainedBox(
-//   constraints: BoxConstraints(
-//     minWidth: 100, // Minimum width is 100
-//     minHeight: 50, // Minimum height is 50
-//     maxWidth: 150, // Maximum width is 150
-//     maxHeight: 100, // Maximum height is 100
-//   ),
-//   child: Container(
-//     color: Colors.blue,
-//     width: 200, // This width will be ignored because of the constraints
-//     height: 200, // This height will be ignored because of the constraints
-//   ),
-// )
+class _RadioButtonsState extends State<RadioButtons> {
+  int value = 0;
 
-//위에서는 제약을 걸었기 때문에 150x100으로 제한
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      //밑과 같이 하면 안먹음
+      //crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          'Count : $value',
+          style: TextStyle(color: Colors.red),
+        ),
+        TestButton()
+      ],
+    );
+  }
+}
 
-//UnconstrainedBox
+class TestButton extends StatelessWidget {
+  const TestButton({super.key});
 
-// UnconstrainedBox(
-//   child: Container(
-//     color: Colors.green,
-//     width: 300, // The child can exceed the parent's size constraints
-//     height: 300,
-//   ),
-// )
-
-//위는 부모의 크기 제약을 제거하여 300x300
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text('up counter'));
+  }
+}
