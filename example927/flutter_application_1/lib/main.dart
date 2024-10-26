@@ -199,14 +199,22 @@ class _RadioButtonsState extends State<RadioButtons> {
           'Count : $value',
           style: TextStyle(color: Colors.red),
         ),
-        TestButton()
+        //밑에서 주의할점 : addcounter 자체를 넘겨주는거지
+        //addcounter() 함수를 넘겨주는 것이 아니므로 괄호를 넣지않게 주의
+        TestButton(AddCounter)
       ],
     );
   }
+
+  void AddCounter() => setState(() => value++);
 }
 
 class TestButton extends StatelessWidget {
-  const TestButton({super.key});
+  //하위에 callback을 넣어줌
+  const TestButton(this.callback, {super.key});
+
+//반환값이 없는 콜백으로 넘겨줄 때 사용됨
+  final VoidCallback callback;
 
   @override
   Widget build(BuildContext context) {
@@ -215,7 +223,8 @@ class TestButton extends StatelessWidget {
       width: double.infinity,
       //입력을 받는 GestureDetector
       child: GestureDetector(
-        onTap: () => print('some Text'),
+        //아래에 addcounter가 들어가는 콜백함수를 부르는 함수 넣어줌
+        onTap: () => callback.call(),
         child: Center(
           child: Container(
             decoration: BoxDecoration(
