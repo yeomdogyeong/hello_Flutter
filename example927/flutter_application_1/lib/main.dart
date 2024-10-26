@@ -206,15 +206,16 @@ class _RadioButtonsState extends State<RadioButtons> {
     );
   }
 
-  void AddCounter() => setState(() => value++);
+//addCounter에 매개변수를 넣었을때
+  void AddCounter(int mango) => setState(() => value = mango);
 }
 
 class TestButton extends StatelessWidget {
   //하위에 callback을 넣어줌
   const TestButton(this.callback, {super.key});
 
-//반환값이 없는 콜백으로 넘겨줄 때 사용됨
-  final VoidCallback callback;
+//이전의 voidCallback이 없어지고 function안에 매개변수의 속성을 넣어주게된다
+  final Function(int) callback;
 
   @override
   Widget build(BuildContext context) {
@@ -224,7 +225,7 @@ class TestButton extends StatelessWidget {
       //입력을 받는 GestureDetector
       child: GestureDetector(
         //아래에 addcounter가 들어가는 콜백함수를 부르는 함수 넣어줌
-        onTap: () => callback.call(),
+        onTap: () => callback.call(100),
         child: Center(
           child: Container(
             decoration: BoxDecoration(
