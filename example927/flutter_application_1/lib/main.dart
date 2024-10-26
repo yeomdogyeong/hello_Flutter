@@ -207,7 +207,7 @@ class _RadioButtonsState extends State<RadioButtons> {
   }
 
 //addCounter에 매개변수를 넣었을때
-  void AddCounter(int mango) => setState(() => value = mango);
+  void AddCounter(int mango) => setState(() => value = value + mango);
 }
 
 class TestButton extends StatelessWidget {
@@ -225,7 +225,9 @@ class TestButton extends StatelessWidget {
       //입력을 받는 GestureDetector
       child: GestureDetector(
         //아래에 addcounter가 들어가는 콜백함수를 부르는 함수 넣어줌
-        onTap: () => callback.call(100),
+        onTap: () => callback.call(1),
+        onDoubleTap: () => callback.call(2),
+        onLongPress: () => callback.call(5),
         child: Center(
           child: Container(
             decoration: BoxDecoration(
