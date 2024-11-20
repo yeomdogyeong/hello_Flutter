@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,35 +53,49 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
+      body: CountContents(counter: _counter),
       floatingActionButton: Stack(
         alignment: Alignment.bottomRight,
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 70.0),
-            child: FloatingActionButton(
+            child: CustomFloatingActionButton(
               onPressed: _incrementCounter,
               tooltip: 'Increment',
-              child: const Icon(Icons.add),
+              icon: Icons.add,
             ),
           ),
-          FloatingActionButton(
+          CustomFloatingActionButton(
             onPressed: _decreaseCounter,
             tooltip: 'Decrease',
-            child: const Icon(Icons.remove),
+            icon: Icons.remove,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CountContents extends StatelessWidget {
+  const CountContents({
+    super.key,
+    required int counter,
+  }) : _counter = counter;
+
+  final int _counter;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Text(
+            'You have pushed the button this many times:',
+          ),
+          Text(
+            '$_counter',
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
         ],
       ),
